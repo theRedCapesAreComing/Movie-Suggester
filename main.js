@@ -5,13 +5,17 @@ console.log(movieArray);
 var request = new XMLHttpRequest();
 
 // Open a new connection, using the GET request on the URL endpoint
-request.open('GET', 'https://api.themoviedb.org/3/search/movie?api_key=fed95255d8f75e85fd3cf8860545b346&query=The+Departed', true);
+var movieNameArray = movieArray[0].split(" ");
+var movie = movieNameArray.join("+");
+console.log(movie);
+var query = 'https://api.themoviedb.org/3/search/movie?api_key=fed95255d8f75e85fd3cf8860545b346&query=' + movie;
+request.open('GET', query, true);
 
 request.onload = function() {
 	// Begin accessing JSON data here 
 	var data = JSON.parse(this.response);
-	console.log(data);
-	console.log(data.results[0].backdrop_path);
+	// console.log(data);
+	// console.log(data.results[0].backdrop_path);
 	
 	data.results.forEach(result => {
 		console.log(result.title);
