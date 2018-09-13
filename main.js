@@ -5,7 +5,7 @@ console.log(movieArray);
 var request = new XMLHttpRequest();
 
 // Open a new connection, using the GET request on the URL endpoint
-var movieNameArray = movieArray[1].split(" ");
+var movieNameArray = movieArray[54].split(" ");
 var movie = movieNameArray.join("+");
 console.log(movie);
 var query = 'https://api.themoviedb.org/3/search/movie?api_key=fed95255d8f75e85fd3cf8860545b346&query=' + movie;
@@ -22,12 +22,7 @@ request.onload = function() {
 	});
 	
 	var app = document.getElementById('root');
-	var backdrop = document.createElement('img');
-	backdrop.src = "https://image.tmdb.org/t/p/w1280" + data.results[0].backdrop_path;
-	var container = document.createElement('div');
-	container.setAttribute('class', 'container');
-	app.appendChild(backdrop);
-	app.appendChild(container);
+	app.src = "https://image.tmdb.org/t/p/w1280" + data.results[0].backdrop_path;
 
 }
 
@@ -51,13 +46,8 @@ function nextMovie() {
 			console.log(result.title);
 		});
 		
-		var app = document.getElementById('root');
-		var backdrop = document.createElement('img');
-		backdrop.src = "https://image.tmdb.org/t/p/w1280" + data.results[0].backdrop_path;
-		var container = document.createElement('div');
-		container.setAttribute('class', 'container');
-		app.appendChild(backdrop);
-		app.appendChild(container);
+		var pic = document.getElementById('root');
+		root.src = "https://image.tmdb.org/t/p/w1280" + data.results[0].backdrop_path;
 		
 	}
 	
