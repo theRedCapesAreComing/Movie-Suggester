@@ -4,47 +4,67 @@ console.log(movieArray);
 // Create a request variable and assign a new XMLHttpRequest object to it.
 var request = new XMLHttpRequest();
 
-var arrayLength = movieArray.length;
-
-var movieNameArray_1 = movieArray[15].split(" ");
-var movie_1 = movieNameArray_1.join("+");
-console.log(movie_1)
-var query_1 = 'https://api.themoviedb.org/3/search/movie?api_key=fed95255d8f75e85fd3cf8860545b346&query=' + movie_1;
-
-var movieNameArray_2 = movieArray[57].split(" ");
-var movie_2 = movieNameArray_2.join("+");
-console.log(movie_2)
-var query_2 = 'https://api.themoviedb.org/3/search/movie?api_key=fed95255d8f75e85fd3cf8860545b346&query=' + movie_2;
-
-var movieNameArray_3 = movieArray[189].split(" ");
-var movie_3 = movieNameArray_3.join("+");
-console.log(movie_3)
-var query_3 = 'https://api.themoviedb.org/3/search/movie?api_key=fed95255d8f75e85fd3cf8860545b346&query=' + movie_3;
-
-var queries = [query_1, query_2, query_3];
-console.log(queries);
-var sources = [];
-
-
-
-
-query = queries[0];
-console.log(query);
 // Open a new connection, using the GET request on the URL endpoint
-request.open('GET', query, true)
-console.log('before function')
-	
+var movieNameArray = movieArray[1].split(" ");
+var movie = movieNameArray.join("+");
+console.log(movie);
+var query = 'https://api.themoviedb.org/3/search/movie?api_key=fed95255d8f75e85fd3cf8860545b346&query=' + movie;
+request.open('GET', query, true);
+
 request.onload = function() {
-	console.log('after function');
 	// Begin accessing JSON data here 
 	var data = JSON.parse(this.response);
-	var backdrop = document.createElement('img')
+	// console.log(data);
+	// console.log(data.results[0].backdrop_path);
+	
+	data.results.forEach(result => {
+		console.log(result.title);
+	});
+	
+	var app = document.getElementById('root');
+	var backdrop = document.createElement('img');
 	backdrop.src = "https://image.tmdb.org/t/p/w1280" + data.results[0].backdrop_path;
-	var div = document.getElementById('movie1');
-	div.appendChild(backdrop);
-	//var src = "https://image.tmdb.org/t/p/w1280" + data.results[0].backdrop_path;
-	//sources.push(src);
-	//console.log(src);
+	var container = document.createElement('div');
+	container.setAttribute('class', 'container');
+	app.appendChild(backdrop);
+	app.appendChild(container);
+
+}
+
+// Send request
+request.send();
+
+function nextMovie() {
+	movie_num = getRandom(365);
+	console.log(movie_num);
+	var movieName = movieArray[movie_num].split(" ");
+	var movie = movieName.join("+");
+	console.log(movie);
+	var newQuery = 'https://api.themoviedb.org/3/search/movie?api_key=fed95255d8f75e85fd3cf8860545b346&query=' + movie;
+	console.log(newQuery);
+	request.open('GET', newQuery, true);
+	
+	request.onload = function() {
+		var data = JSON.parse(this.response);
+		
+		data.results.forEach(result => {
+			console.log(result.title);
+		});
+		
+		var app = document.getElementById('root');
+		var backdrop = document.createElement('img');
+		backdrop.src = "https://image.tmdb.org/t/p/w1280" + data.results[0].backdrop_path;
+		var container = document.createElement('div');
+		container.setAttribute('class', 'container');
+		app.appendChild(backdrop);
+		app.appendChild(container);
+		
+	}
+	
+	request.send();
 	
 }
 
+function getRandom(range) {
+	return Math.floor((Math.random() * range) + 1);
+}
