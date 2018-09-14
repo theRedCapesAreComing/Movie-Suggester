@@ -1,10 +1,59 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title> TEST </title>
+		<title> Your Movie Suggestion </title>
+		<!-- Bootstrap core CSS -->
+		<link href="bootstrap.min.css" rel="stylesheet">
+		<!-- Material Design Bootstrap -->
+		<link href="mdb.min.css" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Kosugi+Maru" rel="stylesheet">
+		<!-- custom styles -->
+		<link href="style.css" rel="stylesheet">
+		<style type="text/css">
+			h1 {
+				font-family: 'Kosugi Maru', sans-serif;
+				position: relative;
+				margin-bottom: 10px;
+			}
+
+			h2 {
+				font-family: 'Kosugi Maru', sans-serif;
+				position: absolute;
+			}
+
+			.centered-h1 {
+				position: fixed;
+				top: 20%;
+				left: 2%;
+				transform: translate(0%,0%);
+			}
+
+			.centered-h2 {
+				position: fixed;
+				top: 60%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+			
+			.score-h2 {
+				position: fixed;
+				top: 5%;
+				left: 80%;
+				transform: translate(0%,0%);
+			}
+			
+		</style>
 	</head>
-	<body>
-		<img id="root" align="center" onClick="nextMovie();"></img>
+	<body onClick="nextMovie();">
+		<!--<div id="root" class="bg" onClick="nextMovie();"></div>-->
+		<div class="view">
+			<img id="root" align="center" onClick="nextMovie();">
+			<div class="mask rgba-stylish-strong">
+				<h1 id="title" class="centered-h1 black-text mb-5 pb-5"></h1>
+				<h2 id="summary" class="centered-h2 black-text"></h2>
+				<h2 id="score" class="score-h2 black-text grey darken-1"></h2>
+			</div>
+		</div>
 		<script src="main.js"></script>
 	</body>
 </html>
