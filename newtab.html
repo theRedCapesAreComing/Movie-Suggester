@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title> Your Movie Suggestion </title>
+		<title> New Tab Movie </title>
 		<!-- Bootstrap core CSS -->
 		<link href="bootstrap.min.css" rel="stylesheet">
 		<!-- Material Design Bootstrap -->
@@ -42,6 +42,12 @@
 				transform: translate(0%,0%);
 			}
 			
+			.copyright {
+				font-family: "Times New Roman", Times;
+				font-size: 12px;
+				transform: translate(70%,0%);
+			}
+			
 		</style>
 	</head>
 	<body onClick="nextMovie();">
@@ -52,6 +58,7 @@
 				<h1 id="title" class="centered-h1 black-text mb-5 pb-5"></h1>
 				<h2 id="summary" class="centered-h2 black-text"></h2>
 				<h2 id="score" class="score-h2 black-text grey darken-1"></h2>
+				<p class="copyright fixed-bottom"> This product uses the TMDb API but is not endorsed or certified by TMDb. </p>
 			</div>
 		</div>
 		<script src="main.js"></script>

@@ -5,7 +5,8 @@ console.log(movieArray);
 var request = new XMLHttpRequest();
 
 // Open a new connection, using the GET request on the URL endpoint
-var movieNameArray = movieArray[29].split(" ");
+num = getRandom(365);
+var movieNameArray = movieArray[num].split(" ");
 var movie = movieNameArray.join("+");
 movie = remove_info(movie);
 console.log(movie);
@@ -27,7 +28,7 @@ request.onload = function() {
 	
 	document.getElementById('title').innerHTML = data.results[0].title;
 	document.getElementById('summary').innerHTML = data.results[0].overview;
-	document.getElementById('score').innerHTML = "TheMovieDataBase Score: " + data.results[0].vote_average;
+	document.getElementById('score').innerHTML = "TMDb Score: " + data.results[0].vote_average;
 	
 	
 
@@ -59,7 +60,7 @@ function nextMovie() {
 		
 		document.getElementById('title').innerHTML = data.results[0].title;
 		document.getElementById('summary').innerHTML = data.results[0].overview;
-		document.getElementById('score').innerHTML = "TheMovieDataBase Score: " + data.results[0].vote_average;
+		document.getElementById('score').innerHTML = "TMDb Score: " + data.results[0].vote_average;
 	}
 	
 	request.send();
